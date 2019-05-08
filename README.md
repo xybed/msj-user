@@ -13,6 +13,6 @@ docker build --rm \
 
 run docker container
 ```
-docker run -d --name msj-user --restart=always -p 9003:9003 msj-user:prod
+docker run -d --name msj-user --restart=always -p 9101:9101 msj-user:prod
 ```
 
