@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msj.user.mapper.UserCustomMapper">
+  <resultMap id="baseResultMap" type="com.msj.common.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="verify_code" jdbcType="VARCHAR" property="verifyCode" />
+    <result column="register_date" jdbcType="CHAR" property="registerDate" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="mobile_phone" jdbcType="CHAR" property="mobilePhone" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="birthday" jdbcType="CHAR" property="birthday" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="principal_id" jdbcType="INTEGER" property="principalId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, verify_code, register_date, avatar, real_name, nickname,
+    mobile_phone, sex, birthday, email, province, city, address, signature, principal_id
+  </sql>
+  
+  <select id="verifyRegister" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(username) FROM user WHERE username = #{username}
+  </select>
+
+  <select id="verifyPassword" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT COUNT(username) FROM user WHERE username=#{username} AND password = #{password}
+  </select>
+
+  <update id="updatePid" parameterType="java.lang.String">
+    UPDATE `user` SET principal_id = id+1000 WHERE username=#{username}
+  </update>
+
+  <select id="login" resultMap="baseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `user` WHERE username=#{username} AND `password`=#{password}
+  </select>
+
+  <update id="updatePassword" parameterType="java.lang.String">
+    UPDATE user SET password=#{password} WHERE username=#{username}
+  </update>
+
+  <select id="queryAvatar" resultType="java.lang.String" parameterType="java.lang.Integer">
+    SELECT avatar FROM user WHERE id=#{id}
+  </select>
+
+  <update id="updateAvatar" parameterType="com.msj.common.entity.User">
+    UPDATE user SET avatar=#{avatar} WHERE id=#{id}
+  </update>
+
+</mapper>
