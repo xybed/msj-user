@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.msj</groupId>
     <artifactId>msj-user</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <name>msj-user</name>
     <description>用户模块</description>
 
