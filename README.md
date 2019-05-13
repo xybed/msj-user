@@ -16,6 +16,11 @@ run docker container
 docker run -d --name msj-user --restart=always -p 9101:9101 msj-user:prod
 ```
 
+利用docker compose启动容器
+```bash
+docker-compose -f docker_user.yml up -d
+```
+
 停止容器
 ```bash
 docker stop msj-user

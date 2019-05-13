@@ -1,0 +1,14 @@
+version: '3'
+services:
+    msj-user:
+        container_name: msj-user
+        image: msj-user:prod
+        ports:
+            - "9101:9101"
+        restart: always
+        networks:
+            - default
+            - app_net
+networks: 
+    app_net:
+        external: true
